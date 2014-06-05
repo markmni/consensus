@@ -121,8 +121,8 @@ namespace Consensus.Hubs
 			room = _rooms.FirstOrDefault(x => x.Name == room.Name);
 			room.Topic = topic;
 
-			// tell the people in this room that the topic has changed
-			Clients.Group(room.Name).roomTopicChanged(topic);
+			// tell the other people in this room that the topic has changed
+            Clients.OthersInGroup(room.Name).roomTopicChanged(topic);
 		}
 
 		public void ChangedCard(PokerRoom room, string cardValue)
